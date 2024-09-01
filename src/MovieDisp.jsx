@@ -11,11 +11,11 @@ function toTitleCase(str) {
 function MovieDisp({movie:{imdbID, Year, Poster,Title,Type}}){
     return(
        <>
-       <div class="dispcard" key={imdbID}>
+       <div className="dispcard" key={imdbID}>
             <div>
                 <h3>{Title}</h3>
             </div>
-            <div>
+            <div  className="img-container">
                 <img src={Poster !== "N/A"? Poster:"https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"} alt={Title} />
             </div>
             <p>{"Genre : "+toTitleCase(Type)}</p>
