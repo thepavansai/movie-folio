@@ -3,11 +3,12 @@
 }
 @media (min-width: 600px) {
     .dispcard{
-        padding: 1.5em;
+        padding: 1.25em;
+       
     }
 }
 @media (min-width: 1024px) {
     .dispcard{
-        padding: 2em;
+        padding: 1.5em;
     }
 }
