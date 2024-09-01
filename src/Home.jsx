@@ -11,7 +11,7 @@ const Home = () => {
     }, []);
     const searchMovie = async (data) => {
         try {
-            const response = await fetch(`${API}&s=${encodeURIComponent(data)}&t=${encodeURIComponent(data)}`);
+            const response = await fetch(`${API}&s=${encodeURIComponent(data)}`);
             const mv = await response.json();
             if (mv.Response == "True") {
                 addmovie(mv.Search);
