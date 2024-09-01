@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import MovieDisp from './MovieDisp';
 import './Home.css'
-const API = "http://www.omdbapi.com/?i=tt3896198&apikey=6cd4bcc7";
+const API = "https://www.omdbapi.com/?i=tt3896198&apikey=6cd4bcc7";
 const Home = () => {
     const [searchword, setword] = useState("");
     const [movie, addmovie] = useState([]);
