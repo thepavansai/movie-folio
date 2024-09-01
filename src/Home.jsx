@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import MovieDisp from './MovieDisp';
 import './Home.css'
-const API = "https://www.omdbapi.com/?i=tt3896198&apikey=6cd4bcc7";
+const API_KEY= "https://www.omdbapi.com/?i=tt3896198&apikey=6cd4bcc7";
 const Home = () => {
     const [searchword, setword] = useState("");
     const [movie, addmovie] = useState([]);
@@ -11,7 +11,7 @@ const Home = () => {
     }, []);
     const searchMovie = async (data) => {
         try {
-            const response = await fetch(`${API}&s=${encodeURIComponent(data)}`);
+            const response = await fetch(`${API_KEY}&s=${encodeURIComponent(data)}`);
             const mv = await response.json();
             if (mv.Response == "True") {
                 addmovie(mv.Search);
