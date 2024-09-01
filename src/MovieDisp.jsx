@@ -16,7 +16,7 @@ function MovieDisp({movie:{imdbID, Year, Poster,Title,Type}}){
                 <h3>{Title}</h3>
             </div>
             <div  className="img-container">
-                <img src={Poster !== "N/A"? Poster:"https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"} alt={Title} />
+                <img src={Poster !== "N/A"? Poster:"https://critics.io/img/movies/poster-placeholder.png"} alt={Title} />
             </div>
             <p>{"Genre : "+toTitleCase(Type)}</p>
             <p>{"Year : "+Year}</p>

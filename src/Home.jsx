@@ -7,7 +7,7 @@ const Home = () => {
     const [movie, addmovie] = useState([]);
     const [er, ser] = useState("");
     useEffect(() => {
-        searchMovie("One Piece");
+        searchMovie("Badri");
     }, []);
     const searchMovie = async (data) => {
         try {
