@@ -9,6 +9,22 @@
   padding-right:0.25em;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+}
+
+.title {
+  font-size: 36px;
+  color: white;
+}
 
 
   

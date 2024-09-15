@@ -20,6 +20,7 @@ function MovieDisp({movie:{imdbID, Year, Poster,Title,Type}}){
             </div>
             <p>{"Genre : "+toTitleCase(Type)}</p>
             <p>{"Year : "+Year}</p>
+            <p>{"IMDB Id: "+imdbID}</p>
        </div>
        </>
     );
