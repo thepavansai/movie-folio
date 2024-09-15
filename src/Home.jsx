@@ -29,7 +29,7 @@ const Home = () => {
     return (<>
         <div className='app'>
             <div class="header">
-                
+                <img src='src\image.png' alt="Logo" class="logo"/>
                     <h1 class="title">Movie-Folio</h1>
             </div>
             <div className='search'>
