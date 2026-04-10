@@ -8,31 +8,31 @@ const OMDB_API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 const Home = () => {
     const [searchword, setword] = useState("");
     const [movie, addmovie] = useState([]);
-    const [er, ser] = useState("");
+    const [er, setError] = useState("");
     useEffect(() => {
         searchMovie("John Wick");
     }, []);
     const searchMovie = async (data) => {
-        if (!OMDB_API_KEY) {
+        if (!OMDB_API_KEY || OMDB_API_KEY.trim() === "") {
             addmovie([]);
-            ser("Missing OMDB API key. Set VITE_OMDB_API_KEY in your deployment environment.");
+            setError("Missing OMDB API key. Set VITE_OMDB_API_KEY in your deployment environment.");
             return;
         }
 
         try {
-            const response = await fetch(`${OMDB_API_BASE_URL}?apikey=${encodeURIComponent(OMDB_API_KEY)}&s=${encodeURIComponent(data)}`);
+            const response = await fetch(`${OMDB_API_BASE_URL}?apikey=${OMDB_API_KEY}&s=${encodeURIComponent(data)}`);
             const mv = await response.json();
             if (mv.Response == "True") {
                 addmovie(mv.Search);
-                ser(null);
+                setError(null);
             }
             else {
                 addmovie([]);
-                ser(mv.Error);
+                setError(mv.Error);
             }
 
-        } catch (err) {
-            ser("Failed to fetch movies. Please try after sometime");
+        } catch {
+            setError("Failed to fetch movies. Please try after sometime");
         }
     };
     return (<>
