@@ -1,8 +1,11 @@
-# React + Vite
+# Movie-Folio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Movie search app built with React + Vite.
 
-Currently, two official plugins are available:
+## Environment variables
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To keep secrets out of source code, configure your OMDB API key through environment variables.
+
+1. Copy `.env.example` to `.env`.
+2. Set your key in `VITE_OMDB_API_KEY`.
+3. For deployments, add `VITE_OMDB_API_KEY` in your hosting provider's environment variable settings.

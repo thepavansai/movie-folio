@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import MovieDisp from './MovieDisp';
 import './Home.css'
-const API_KEY = "https://www.omdbapi.com/?i=tt3896198&apikey=6cd4bcc7";
+
+const OMDB_API_BASE_URL = 'https://www.omdbapi.com/';
+const OMDB_API_KEY = import.meta.env.VITE_OMDB_API_KEY;
+
 const Home = () => {
     const [searchword, setword] = useState("");
     const [movie, addmovie] = useState([]);
@@ -10,8 +13,14 @@ const Home = () => {
         searchMovie("John Wick");
     }, []);
     const searchMovie = async (data) => {
+        if (!OMDB_API_KEY) {
+            addmovie([]);
+            ser("Missing OMDB API key. Set VITE_OMDB_API_KEY in your deployment environment.");
+            return;
+        }
+
         try {
-            const response = await fetch(`${API_KEY}&s=${encodeURIComponent(data)}`);
+            const response = await fetch(`${OMDB_API_BASE_URL}?apikey=${encodeURIComponent(OMDB_API_KEY)}&s=${encodeURIComponent(data)}`);
             const mv = await response.json();
             if (mv.Response == "True") {
                 addmovie(mv.Search);
