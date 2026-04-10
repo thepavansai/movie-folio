@@ -1,29 +1,39 @@
 import { useEffect, useState } from 'react'
 import MovieDisp from './MovieDisp';
 import './Home.css'
-const API_KEY = "https://www.omdbapi.com/?i=tt3896198&apikey=6cd4bcc7";
+
+const OMDB_API_BASE_URL = 'https://www.omdbapi.com/';
+const OMDB_API_KEY = import.meta.env.VITE_OMDB_API_KEY?.trim() ?? '';
+const HAS_OMDB_API_KEY = OMDB_API_KEY.length > 0;
+
 const Home = () => {
     const [searchword, setword] = useState("");
     const [movie, addmovie] = useState([]);
-    const [er, ser] = useState("");
+    const [er, setError] = useState("");
     useEffect(() => {
         searchMovie("John Wick");
     }, []);
     const searchMovie = async (data) => {
+        if (!HAS_OMDB_API_KEY) {
+            addmovie([]);
+            setError("Missing OMDB API key. Set VITE_OMDB_API_KEY in your deployment environment.");
+            return;
+        }
+
         try {
-            const response = await fetch(`${API_KEY}&s=${encodeURIComponent(data)}`);
+            const response = await fetch(`${OMDB_API_BASE_URL}?apikey=${OMDB_API_KEY}&s=${encodeURIComponent(data)}`);
             const mv = await response.json();
-            if (mv.Response == "True") {
+            if (mv.Response === "True") {
                 addmovie(mv.Search);
-                ser(null);
+                setError(null);
             }
             else {
                 addmovie([]);
-                ser(mv.Error);
+                setError(mv.Error);
             }
 
-        } catch (err) {
-            ser("Failed to fetch movies. Please try after sometime");
+        } catch {
+            setError("Failed to fetch movies. Please try after sometime");
         }
     };
     return (<>
